@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="LingoAI" />
+  <link rel="manifest" href="manifest.json" />
+  <title>LingoAI English — Ứng dụng Học Tiếng Anh AI (100% Offline)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Sticky Top AppBar -->
+  <header class="topbar">
+    <div class="brand-wrap">
+      <div class="logo-badge">L</div>
+      <div>
+        <div class="brand-title">LingoAI English</div>
+        <span class="offline-pill">✓ 100% Offline Curriculum Ready</span>
+      </div>
+    </div>
+
+    <div class="stats-bar">
+      <span id="stat-cefr" class="stat-pill stat-cefr">CEFR B1</span>
+      <span id="stat-streak" class="stat-pill stat-streak" title="Chuỗi ngày học liên tiếp">🔥 7 ngày</span>
+      <span id="stat-xp" class="stat-pill stat-xp" title="Tổng điểm kinh nghiệm">⚡ 340 XP</span>
+      <span id="stat-hearts" class="stat-pill stat-heart" onclick="window.refillHearts()" title="Chạm để hồi phục 5 Tim">❤️ 5</span>
+      <button id="theme-btn" class="icon-btn" onclick="window.toggleTheme()">🌙 Tối</button>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main id="app-main" class="container"></main>
+
+  <!-- Modal Container (Study Sheet / Interactive Quiz / Placement Test) -->
+  <div id="modal-root"></div>
+
+  <!-- Fixed Bottom Navigation Bar -->
+  <nav class="bottom-nav">
+    <button class="nav-tab active" data-tab="home" onclick="window.switchTab('home')">
+      <span class="nav-icon">🗺️</span>
+      <span>Lộ trình</span>
+    </button>
+    <button class="nav-tab" data-tab="photo_vault" onclick="window.switchTab('photo_vault')">
+      <span class="nav-icon">📸</span>
+      <span>Kho Từ Ảnh</span>
+    </button>
+    <button class="nav-tab" data-tab="word_challenge" onclick="window.switchTab('word_challenge')">
+      <span class="nav-icon">⚡</span>
+      <span>Đoán Từ Ẩn</span>
+    </button>
+    <button class="nav-tab" data-tab="srs" onclick="window.switchTab('srs')">
+      <span class="nav-icon">🗂️</span>
+      <span>Thẻ SRS</span>
+    </button>
+    <button class="nav-tab" data-tab="ai" onclick="window.switchTab('ai')">
+      <span class="nav-icon">🤖</span>
+      <span>AI Roleplay</span>
+    </button>
+    <button class="nav-tab" data-tab="pronunciation" onclick="window.switchTab('pronunciation')">
+      <span class="nav-icon">🎙️</span>
+      <span>Phát âm</span>
+    </button>
+    <button class="nav-tab" data-tab="analytics" onclick="window.switchTab('analytics')">
+      <span class="nav-icon">📊</span>
+      <span>Thống kê</span>
+    </button>
+  </nav>
+
+  <script src="curriculum_data.js"></script>
+  <script src="app.js"></script>
+  <script src="photo_vault.js"></script>
+  <script>
+    if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+      navigator.serviceWorker.register('./sw.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>
